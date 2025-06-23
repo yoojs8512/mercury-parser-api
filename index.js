@@ -2,6 +2,10 @@ const express = require('express');
 const Mercury = require('@postlight/mercury-parser');
 const app = express();
 
+app.get('/', (req, res) => {
+  res.send('Mercury Parser is running');
+});
+
 app.get('/parser', async (req, res) => {
   const url = req.query.url;
   try {
