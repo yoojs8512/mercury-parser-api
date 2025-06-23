@@ -9,7 +9,12 @@ app.get('/', (req, res) => {
 app.get('/parser', async (req, res) => {
   const url = req.query.url;
   try {
-    const result = await Mercury.parse(url);
+    const result = await Mercury.parse(url, {
+      fallback: true,
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/122 Safari/537.36'
+      }
+    });
     res.json(result);
   } catch (err) {
     res.status(500).json({ error: err.toString() });
